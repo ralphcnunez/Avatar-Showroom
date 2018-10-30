@@ -1,34 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Description
+Avatar-Showroom is a RoR (Ruby on Rails) application that allows users to login or signup and create their custom Avatar. They can view, like and comment on other avatars made by differents users. This application provides standard user authentication, including signup, login, logout, and passwords.
 
-Things you may want to cover:
-
-* Ruby version
-ruby 2.3.3p222 (2016-11-21 revision 56859) [x86_64-darwin17]
-
-
-* System dependencies
-Styling was made with help of Semantic UI
-
-* Configuration
-6 different models
-
-
-* Database creation
-rake db:create
-
-* Database initialization
-rake db:migrate
-
-* How to run the test suite
-Login and insert any image file
-
-* Services (job queues, cache servers, search engines, etc.)
-
-Avatar Customization
-
-* Deployment instructions
-Downlaod instructions
-* ...
+# Instructions
+* Fork and clone this repository
+* CD into Avatar-Showroom
+* Run bundle install to install all gems necessary to run this app.
+* Run rails db:reset to clear, create, migrate and seed database
+* Run rails s 
+* Follow the instructions on the command line.
+* Make an avatar, leave a nice comment and enjoy!
