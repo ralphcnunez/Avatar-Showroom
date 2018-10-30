@@ -1,0 +1,6 @@
+
+<%= form_for @user, url: create_comment_path(@user.id) do |f| %>
+<div><%= f.label :content %> </div>
+<%= f.text_area :content %>
+<%= f.submit "Save Comment" %>
+<% end %>

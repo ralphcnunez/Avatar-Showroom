@@ -1,0 +1,109 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
+  <style>
+  .wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .head {
+    padding-left: 400px;
+  }
+
+  .features {
+    float:left;
+  }
+
+  </style>
+  <title><%= @avatar.name %></title>
+</head>
+<body>
+
+    <div class='wrapper'>
+
+  <div class= "features">
+  <h3>Likes: <%=@avatar.likes%></h3>
+    <%= image_tag @avatar.image, alt: "avatar pic", height: 200, width: 200,:class => "style_image" %> <br>
+    <button> <%= link_to "Previous Avatar", user_avatar_path(@avatar.previous_avatar.user, @avatar.previous_avatar) %></button>
+    <button> <%= link_to "Next Avatar", user_avatar_path(@avatar.next_avatar.user, @avatar.next_avatar) %></button> <br>
+    <button><%= link_to "All #{@avatar.user.name} Avatar", user_avatars_path  %></button> <br>
+    <% if current_user != nil %>
+    <%=button_to ("Add Likes"), like_path%>
+    <% if @avatar.user == current_user %>
+    <button><%= link_to "Edit Avatar", edit_user_avatar_path(@avatar.user, @avatar) %></button>
+    <%= button_to "delete", user_avatar_path(@avatar.user, @avatar), :method => :delete %>
+    <% end %>
+    <%= form_for @comment, url: create_comment_path(@avatar.id) do |f| %>
+    <div><%= f.label :content %> </div>
+    <%= f.text_area :content %>
+    <%= f.submit "Save Comment" %>
+    <% end %>
+    <% end %>
+    <br>
+  </div>
+</div>
+
+
+    <div class="ui comments">
+      <h3 class= "head" align="right">Comments</h3>
+      <div class= 'bod'> </div>
+
+
+  <%@avatar.comments.last(7).each do |comment| %>
+<div class="comment">
+<a class="avatar">
+
+</a>
+<div class="content hi" align="right">
+  <a class="author"><%= comment.user.name %></a>
+  <!-- <br> -->
+  <div class="text hi" >
+    <%= comment.content %>
+  </div>
+</div>
+  <!-- <div class="text hi">
+    <%= comment.content %>
+  </div> -->
+<!-- </div> -->
+</div>
+
+<% end %>
+
+
+
+
+
+
+
+<table class="ui definition table">
+  <tbody>
+    <tr>
+      <td class="two wide column">Name</td>
+      <td><%= @avatar.name %></td>
+    </tr>
+    <tr>
+      <td>Creator</td>
+      <td><%= link_to @avatar.user.username, @avatar.user%></td>
+    </tr>
+    <tr>
+      <td>Costume</td>
+      <td><%=@avatar.costume.name%></td>
+    </tr>
+    <tr>
+      <td>Character</td>
+      <td><%=@avatar.character.name%></td>
+    </tr>
+    <tr>
+      <td>Ability</td>
+      <td><%= @avatar.ability.name %></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

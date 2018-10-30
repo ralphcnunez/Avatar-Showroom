@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MashPic</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
+  </head>
+
+  <body>
+    <div class="ui inverted segment">
+       <div class="ui inverted secondary menu">
+         <a class="active item"<%= link_to "Home Page", home_path  %></a>
+         <% if current_user %>
+            <a class="active item" <%= link_to "#{current_user.name}", user_path(current_user) %> </a>
+         <% else %>
+     <a class="active item sign" <%= link_to "Sign up", new_user_path %> </a>
+      <a class="active item" <%= link_to "Log In", new_session_path %></a>
+    <% end %>
+    </div>
+      </div>
+    <p class="notice"><%=notice%></p>
+    <p class="alert"><%=alert%></p>
+    <%= yield %>
+  </body>
+</html>
